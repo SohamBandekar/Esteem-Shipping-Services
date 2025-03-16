@@ -1,0 +1,368 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    margin: 0px;
+    background-color: #ffffff;
+}
+header{
+    background-color: #14213d;
+    color: #ffffff;
+    text-align: center;
+    height:auto;
+    overflow: visible;
+}
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+header li{
+    font-size: 20px;
+}
+
+header .navigation li:hover {
+    color: #caf0f8;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.dropdown li{
+    margin: 5px;
+}
+.dropdown a:hover{
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.dropdown{
+    margin: 10px;
+    position: absolute;
+    margin: 0.5em -0.5em;
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    background-color: #caf0f8;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    color: #14213d;
+    z-index: 9999;
+}
+.servicehover:hover .dropdown{
+    display:block;
+    overflow: visible;
+}
+
+.aboutus{
+    text-align: left;
+    margin: 20px;
+    border-color: aquamarine;
+
+
+}
+.aboutus h2{
+    margin-left: 100px;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 60px;
+    color: #15223d;
+}
+
+.aboutus img{
+    top:10px;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+
+
+}
+.whoweare h2{
+    position: absolute;
+    margin-left: 600px;
+    font-size: 60px;
+    color: #15223d;
+}
+.whoweare span{
+    color: #caf0f8 ;
+}
+.whoweare{
+    text-align: left;
+    margin: 20px;
+}
+.whoweare p{
+    padding: 15px;
+}
+.whoweare img{
+    top:10px;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+
+.ourexpertise{
+    background-color: aliceblue;
+    margin: 15px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px ;
+    grid-template-rows: 200px 200px 200px 200px ;
+    gap: 25px;
+    padding: 50px;
+}
+
+.ourexpertise div{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 25px;
+
+}
+
+#cc{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/Shipment_COD.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 30px;
+
+
+    grid-row: span 3;
+}
+#IEC{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/Genshin_expidition.jpeg);
+    background-size: cover;
+    background-position: center;
+    grid-row: span 2;
+    grid-column: span 2;
+}
+#Doc{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/LA-Noire.jpg);
+    background-size: cover;
+    background-position: center;
+    grid-row: span 2;
+    grid-column: span 2;
+}
+#FF{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/Train.jpg);
+    background-size: cover;
+    background-position: center;
+   grid-row: span 1;
+   grid-column: span 1;
+}
+#OE{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/SequoiaLight.png);
+    background-size: cover;
+    background-position: center;
+    grid-column: span 4;
+}
+#ws{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/belurat_gaol.png);
+    background-size: cover;
+    background-position: center;
+    grid-column: span 3 ;
+}
+#CI{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/jackdaw.jpg);
+    background-size: cover;
+    background-position: center;
+    grid-row-start: 4 ;
+    grid-row-end: 5;
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+#Trans{
+    color: #ffffff;
+    background-image: url(../.idea/Images/SVGs/GTA_V_Map_Atlas.png);
+    background-size: cover;
+    background-position: center;
+    grid-row-start: 2 ;
+    grid-row-end: 5;
+    grid-column-start: 6;
+    grid-column-end: 7;
+}
+
+.missionvision{
+    padding: 40px;
+    background-color: #03045e;
+    text-align: left;
+    color: #ffffff;
+    position: relative;
+}
+.bluewavetransition{
+
+    margin: -40px;
+    position: absolute;
+    height: auto;
+    width: 100%;
+
+    bottom: 2000px;
+    aspect-ratio: 900/600;
+    background: url(../.idea/Images/SVGs/blue_layered_waves.svg) no-repeat top;
+    background-size: cover;
+    z-index: -1;
+}
+.missionvision h2{
+    text-align: center;
+}
+.missionvision img{
+
+    border-radius: 10px;
+
+}
+.sticky{
+    display: flex;
+    position:sticky;
+    top: 15px;
+    margin-bottom: 100px;
+}
+
+
+.industries{
+    padding: 30px;
+    background-color: blue;
+    text-align: left;
+
+}
+.industries h2{
+    text-align: center;
+    color: #03045e;
+}
+.industries h2{
+    color: #caf0f8;
+}
+
+
+.container{
+
+    display: flex;
+    flex-direction: row;
+}
+.container div{
+    box-shadow: 2px 3px 3px #000000;
+    background-color: white;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 10px;
+}
+.container div:hover{
+    background-color: lightgray;
+}
+.longdiv{
+    margin: 20px;
+    max-width: 60%;
+}
+.shortdiv{
+    max-width: 40%;
+    flex-grow: 2;
+}
+.longer{
+    max-width: 40%;
+    flex-grow: 2;
+    background-color: #ec00a0;
+}
+.shorter{
+    flex-grow: 1;
+    max-width: 60%;
+}
+#chemicalsimage{
+    background-image: url(../.idea/Images/Pictures/chemicals.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#packagingmaterial{
+    background-image: url(../.idea/Images/Pictures/Packaging.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#machineryimage{
+    background-image: url(../.idea/Images/Pictures/Machinary.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#Generalcargoimage{
+    background-image: url(../.idea/Images/Pictures/General_cargo.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.whychooseus{
+    padding: 30px;
+    text-align: left;
+    margin: 20px;
+
+}
+.whychooseus li{
+    text-align: center;
+}
+.whychooseus h2{
+    text-align: center;
+    color: #0077b6;
+}
+.whychooseus ul{
+    list-style-type: none;
+    display: column;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+.whychooseus div{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    text-align: left;
+    margin: 5px;
+}
+.whychooseus main{
+    box-shadow: 2px 3px 3px #000000;
+    background-color: whitesmoke;
+    padding: 35px;
+    border-radius: 10px;
+    margin: 25px;
+    color: #ffffff;
+}
+.whychooseus main:hover{
+    background-color: lightgray;
+    transition: 1s;
+}
+.whychooseus img{
+    border-radius: 10px;
+}
+.whychooseus li {
+    color: #14213d;
+}
+.whychooseus span{
+    color: #03045e;
+}
+footer{
+    background-color: #14213d;
+    margin: 0px;
+    padding: 20px;
+    color: #ffffff;
+    font-size:24px;
+}
+
+footer span{
+    font-size: 14px;
+}

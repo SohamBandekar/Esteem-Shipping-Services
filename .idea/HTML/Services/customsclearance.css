@@ -1,0 +1,180 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    margin: 0px;
+    background-color: #ffffff;
+}
+header{
+    background-color: #14213d;
+    color: #ffffff;
+    text-align: center;
+    height:auto;
+    overflow: visible;
+}
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+header li{
+    font-size: 20px;
+}
+
+header .navigation li:hover {
+    color: #00b4d8;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.dropdown li{
+    margin: 5px;
+}
+.dropdown a:hover{
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.dropdown{
+    margin: 10px;
+    position: absolute;
+    margin: 0.5em -0.5em;
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    background-color: #00b4d8;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    color: #14213d;
+    z-index: 9999;
+}
+.servicehover:hover .dropdown{
+    display:block;
+    overflow: visible;
+}
+.banner{
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+}
+
+.typesofclearance{
+    background: linear-gradient(to bottom, #00b4d8, #14213d);
+    margin-top: -40px;
+}
+.typesofclearance h3{
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+}
+.typescontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+.import_clearance ul ,.export_clearance ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+.goods_we_handle{
+    text-align: center;
+    background: linear-gradient(to bottom, #14213d, #28282B);
+    padding: 20px;
+    color: #ffffff;
+}
+
+.goods_we_handle h3{
+    color: #ffffff;
+}
+.import_clearance li ,.export_clearance li{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    background-color: #98DED9;
+    border-radius: 10px;
+}
+.topcontainer ,.bottomcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
+    text-align: center;
+}
+.topcontainer div ,.bottomcontainer div{
+    background-color: #98DED9;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+.whatdotransport{
+    text-align: center;
+    background-color: #28282B;
+    color: #ffffff;
+    padding: 20px;
+}
+.whatdotransport main{
+    display:grid;
+    grid-auto-flow: column;
+    overflow: auto;
+    gap: 85px;
+}
+.whatdotransport div{
+    padding: 25px;
+    outline-color: #c91b1b;
+    outline-style: solid;
+    outline-width: 10px;
+    text-align: left;
+    margin: 10px;
+    border-radius: 10px;
+}
+.taxes_duties_tariffs{
+    text-align: center;
+    background-color: #28282B;
+    color: #ffffff;
+    padding: 20px;
+}
+.taxes_duties_tariffs main{
+    display:grid;
+    grid-auto-flow: column;
+    overflow: auto;
+    gap: 85px;
+}
+.taxes_duties_tariffs div{
+    padding: 25px;
+    outline-color: beige;
+    outline-style: solid;
+    outline-width: 10px;
+    text-align: left;
+    margin: 10px;
+    border-radius: 10px;
+}
+footer{
+    background-color: #14213d;
+    margin: 0px;
+    padding: 20px;
+    color: #ffffff;
+    font-size:24px;
+}
+
+footer span{
+    font-size: 14px;
+}
+
+

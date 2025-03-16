@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> ESTEEM SHIPPING SERVICES</title>
+  <link rel="stylesheet" href="Contact-Page.css">
+  <link rel="shortcut icon" href="Ship-Logo-by-DEEMKA-STUDIO-7.jpg" type="image/x-icon">
+  <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css>
+
+</head>
+<body>
+<section class="header">
+  <nav>
+    <a href="include.html"><img src="logo.jpg.png" alt=""></a>
+    <div class="nav-link">
+      <i class="fa fa-times" ></i>
+      <ul>
+        <li><a href="">HOME</a></li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Export / Import Enquiry</a></li>
+        <li><a href="">Track Shipment</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">login</a></li>
+
+
+      </ul>
+    </div>
+  </nav>
+</section>
+
+<div class="hero">
+  <div class="form-box">
+    <div class="button-box">
+      <div id="btn"></div>
+      <button type="button class" class="toggle-btn" onclick="Login()"> Log IN</button>
+      <button type="button class" class="toggle-btn" onclick="Register()"> Register</button>
+    </div>
+    <form class="input-group" id="Login">
+      <input type="text" class="input_field" placeholder="user id" required> <br>
+      <input type="text" class="input_field" placeholder="passward" required><br>
+      <input type="checkbox" class="check-box"><br><br> <br><span> remember passward</span><br>
+      <button type="submit" class="submit-btn">Log IN</button>
+    </form>
+    <form class="input-group" id="Register">
+      <input type="text" class="input_field" placeholder="user id" required> <br>
+      <input type="email" class="input_field" placeholder="Email" required> <br>
+      <input type="text" class="input_field" placeholder="passward" required><br>
+      <input type="checkbox" class="check-box"><br><br> <br><span> i agree to the terms & conditins</span><br>
+      <button type="submit" class="submit-btn">Register</button>
+    </form>
+  </div>
+
+</div>
+
+
+
+
+<script>
+  var x = document.getElementById("Login");
+  var y = document.getElementById("Register");
+  var z = document.getElementById("btn");
+
+  function Register(){
+    console.log("Event Registration Triggered");
+    x.style.left="-400px";
+    y.style.left="50px";
+    z.style.left="110px";
+  }
+
+  function Login(){
+    console.log("Event Login Triggered");
+    x.style.left="50px";
+    y.style.left="450px";
+    z.style.left="0px";
+  }
+
+</script>

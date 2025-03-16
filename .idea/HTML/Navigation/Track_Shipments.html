@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Esteem Shipping Services > Track Shipment</title>
+  <link rel="stylesheet" href="../Navigation/TrackShipmentstyle.css">
+</head>
+<body>
+<header>
+  <div>
+    <img src="../../Images/Esteem%20Shipping%20Logos/Esteem%20Shipping%20Services%20Title%20Logo.png" width=auto height="100"></img>
+  </div>
+  <nav>
+    <ul class="navigation">
+      <li><a href="Index.html">Home</a></li>
+      <li><a href="ContacUS.html">Contact US</a></li>
+      <li> <a href="AboutUS.html">About US</a></li>
+      <li> <a href="Track_Shipments.html">Track Shipment</a> </li>
+      <li class="servicehover">Services
+        <ul class="dropdown">
+          <li><a href="../Services/CustomsClearance.html">Customs Clearance</a></li>
+          <li> <a href="../Services/Transportation.html">Transportation</a></li>
+          <li> <a href="../Services/freightforwarding.html">Freight Forwarding</a></li>
+          <li> <a href="../Services/IEC_registeration.html">IEC Registeration</a></li>
+        </ul>
+      </li>
+      <li ><a href="../Authentication/Login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="Container">
+  <div class="Textbox">
+    <h1>Track Your Orders Easily:</h1>
+    <br>
+    <main>
+      <img  id="imgid" src="../../Images/TrackShipmentimages/tracking.png" width=100% max-height=200px id="placeholder"></img>
+      <section id="loadinganimation" class="Loading">
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+      </section>
+      <h5 id="number">Search</h5>
+      <button onclick="scrolltoshipmentdetails()" class="navigatebutton" id="navigate">Navigater to shipment Details:</button>
+    </main>
+  </div>
+
+
+  <div class="form_container">
+    <div class="btn">
+      <button type="button" class="toggle-btn" id="bkbtn" onclick="Booking()"> Booking No</button>
+      <button type="button " class="toggle-btn" id="conbtn" onclick="Container()"> Container No</button>
+      <button type="button" class="toggle-btn" id="vesbtn" onclick="Vessel()"> Vessel No</button>
+    </div>
+
+    <main class="Forms" id="formid">
+      <form id="Booking" class="BookingTab">
+        <h3>Booking:</h3>
+        <label>Booking No: </label>
+        <input type="text" id = "bookingno" placeholder="Booking No:" required label="Booking No:">
+        <button type="button" label="Submit Enquiry" onclick="BookingTrackShipment()">Track</button>
+      </form>
+
+      <form id="Container" class="ContainerTab">
+        <h3>Container:</h3>
+        <label>Container No: </label>
+        <input type="text" id = "containerno" placeholder="Container No" required label="Container No:">
+        <button type="button" label="Submit Enquiry" onclick="ContainerTrackShipment()">Track</button>
+      </form>
+
+      <form id="Vessel" class="VesselTab">
+        <h3>Vessel:</h3>
+        <label>Vessel No: </label>
+        <input type="text"  id = "vesselno" placeholder="Vessel No" required label="Vessel No:">
+        <button type="button" label="Submit Enquiry" onclick="VesselTrackShipment()">Track</button>
+      </form>
+
+    </main>
+  </div>
+</section>
+<section class="status">
+  <div>
+    <h1>What is Your Order Status?</h1>
+  </div>
+  <div class="OrderStatusimg">
+
+  </div>
+</section>
+
+<section class="Shipment_Details" id="Shipment_Details">
+    <h1>Shipment Details</h1>
+    <div id="shipment-table"></div>
+</section>
+
+
+</body>
+<script>
+
+  let datatype;
+  let Shipment_no;
+  let result;
+
+  const bookinbtn = document.getElementById("bkbtn");
+  const containerbtn = document.getElementById("conbtn");
+  const vesselbtn = document.getElementById("vesbtn");
+
+  function scrolltoshipmentdetails(data) {
+    const shipmentpage = document.getElementById("Shipment_Details");
+    shipmentpage.scrollIntoView({ behavior: "smooth" , block: "nearest" , inline: "center" })
+
+  }
+
+
+  function Booking() {
+    const formbg =  document.getElementById("formid");
+    const Bookingform = document.getElementById("Booking");
+    Bookingform.scrollIntoView({ behavior: "smooth" , block: "nearest" , inline: "center" })
+
+    bookinbtn.disabled = true;
+    containerbtn.disabled = false;
+    vesselbtn.disabled = false;
+
+    formbg.style.backgroundPosition = "0% 0";
+    formbg.style.transition = "background-position 0.5s ease-in-out";
+  }
+  function Container() {
+    const formbg =  document.getElementById("formid");
+    const Containerform = document.getElementById("Container");
+
+
+    containerbtn.disabled = true;
+    bookinbtn.disabled = false;
+    vesselbtn.disabled = false;
+
+    Containerform.scrollIntoView({ behavior: "smooth",block: "nearest" });
+    formbg.style.backgroundPosition = "50% 0";
+    formbg.style.transition = "background-position 0.5s ease-in-out";
+
+  }
+  function Vessel() {
+
+    const formbg =  document.getElementById("formid");
+    const Vesselform = document.getElementById("Vessel");
+
+    containerbtn.disabled = false;
+    bookinbtn.disabled = false;
+    vesselbtn.disabled = true;
+
+    Vesselform.scrollIntoView({ behavior: "smooth" , block: "nearest" , inline: "center" })
+    formbg.style.backgroundPosition = "100% 0";
+    formbg.style.transition = "background-position 0.5s ease-in-out";
+
+  }
+
+  function BookingTrackShipment() {
+
+    const loader = document.getElementById("loadinganimation");
+    const img = document.getElementById("imgid");
+    const searchText = document.getElementById("number");
+    const button = document.querySelector(".navigatebutton");
+    // Hide image, show loader
+    img.style.display = "none";
+    loader.style.display = "flex"; // or "block" based on layout
+
+    // Hide loader & show image after 6 seconds
+    setTimeout(() => {
+      loader.style.display = "none";
+      img.style.display = "block";
+      searchText.style.display = "block";
+      button.style.visibility = "visible";
+
+
+      document.getElementById("imgid").src = "../../Images/TrackShipmentimages/Bookingimage.png";
+      result = "Shippment Found";
+    }, 6000);
+
+    console.log("Tracking Shipment");
+    Shipment_no = document.getElementById('bookingno').value;
+
+    datatype="Booking";
+    console.log(Shipment_no);
+
+
+    result = "searching";
+    document.getElementById("number").textContent = result;
+
+    console.log("Result:"+result);
+
+
+
+    async function fetchShipmentData() {
+      try {
+        // Replace with your API URL
+        const response = await fetch(`https://api.sinay.ai/container-tracking/api/v2/shipment?shipmentNumber=${Shipment_no}`, options);
+        const data = await response.json();
+
+        // Display data in a table
+        displayTable(data);
+
+      } catch (error) {
+        console.error('Error fetching shipment data:', error);
+      }
+    }
+
+    const options = {
+      method: 'GET',
+      headers: {accept: 'application/json', API_KEY: 'f0124914-22bc-4660-9f55-de622d7b4ac8'}
+    };
+
+
+
+    // Function to display data in an HTML table
+    function displayTable(data) {
+      const container = document.getElementById('shipment-table');
+      // Metadata Table
+      if (data.metadata) {
+        const metadataHTML = `
+          <h2>Shipment Metadata</h2>
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Shipment Number</th>
+              <th>Sealine Name</th>
+              <th>Status</th>
+              <th>Updated At</th>
+            </tr>
+            <tr>
+              <td>${data.metadata.shipmentType}</td>
+              <td>${data.metadata.shipmentNumber}</td>
+              <td>${data.metadata.sealineName}</td>
+              <td>${data.metadata.shippingStatus}</td>
+              <td>${data.metadata.updatedAt}</td>
+            </tr>
+          </table>
+        `;
+        container.innerHTML += metadataHTML;
+
+      }
+
+      // Locations Table
+      if (data.locations && data.locations.length > 0) {
+        const locationsHTML = `
+          <h2>Locations</h2>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>Timezone</th>
+            </tr>
+            ${data.locations
+                .map(
+                        loc => `
+                <tr>
+                  <td>${loc.name}</td>
+                  <td>${loc.state}</td>
+                  <td>${loc.country}</td>
+                  <td>${loc.timezone}</td>
+                </tr>
+              `
+                )
+                .join('')}
+          </table>
+        `;
+        container.innerHTML += locationsHTML;
+
+      }
+      // Route Table
+      if (data.route) {
+        const { prepol, pol, pod, postpod } = data.route;
+        const routeHTML = `
+          <h2>Route Information</h2>
+          <table>
+            <tr>
+              <th>Point</th>
+              <th>Location</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+            ${prepol ? `
+              <tr>
+                <td>Pre-POL</td>
+                <td>${prepol.location?.name || 'N/A'}</td>
+                <td>${prepol.date}</td>
+                <td>${prepol.actual ? 'Actual' : 'Predicted'}</td>
+              </tr>` : ''}
+            ${pol ? `
+              <tr>
+                <td>POL</td>
+                <td>${pol.location?.name || 'N/A'}</td>
+                <td>${pol.date}</td>
+                <td>${pol.actual ? 'Actual' : 'Predicted'}</td>
+              </tr>` : ''}
+            ${pod ? `
+              <tr>
+                <td>POD</td>
+                <td>${pod.location?.name || 'N/A'}</td>
+                <td>${pod.date}</td>
+                <td>${pod.actual ? 'Actual' : 'Predicted'}</td>
+              </tr>` : ''}
+            ${postpod ? `
+              <tr>
+                <td>Post-POD</td>
+                <td>${postpod.location?.name || 'N/A'}</td>
+                <td>${postpod.date}</td>
+                <td>${postpod.actual ? 'Actual' : 'Predicted'}</td>
+              </tr>` : ''}
+          </table>
+        `;
+        container.innerHTML += routeHTML;
+
+      }
+
+      // Vessel Table
+      if (data.vessels && data.vessels.length > 0) {
+        const vesselsHTML = `
+          <h2>Vessel Information</h2>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>IMO</th>
+              <th>Call Sign</th>
+              <th>Flag</th>
+            </tr>
+            ${data.vessels
+                .map(
+                        vessel => `
+                  <tr>
+                    <td>${vessel.name}</td>
+                    <td>${vessel.imo}</td>
+                    <td>${vessel.callSign}</td>
+                    <td>${vessel.flag}</td>
+                  </tr>
+                `
+                )
+                .join('')}
+          </table>
+        `;
+        container.innerHTML += vesselsHTML;
+
+      }
+
+      // Containers Table
+      if (data.containers && data.containers.length > 0) {
+        const containersHTML = `
+          <h2>Containers</h2>
+          <table>
+            <tr>
+              <th>Container Number</th>
+              <th>ISO Code</th>
+              <th>Status</th>
+            </tr>
+            ${data.containers
+                .map(
+                        container => `
+                  <tr>
+                    <td>${container.number}</td>
+                    <td>${container.isoCode}</td>
+                    <td>${container.status}</td>
+                  </tr>
+                `
+                )
+                .join('')}
+          </table>
+        `;
+        container.innerHTML += containersHTML;
+
+      }
+    }
+
+
+    // Fetch data on page load
+    fetchShipmentData();
+  }
+  function ContainerTrackShipment() {
+    console.log("Tracking Shipment");
+    Shipment_no = document.getElementById('containerno').value;
+    console.log(Shipment_no);
+
+
+    datatype="Container";
+    console.log(Shipment_no);
+
+
+    result = "Seaching Shipment";
+    document.getElementById("number").textContent = result;
+    console.log("Result:"+result);
+
+    document.getElementById("placeholder").src = "../../Images/TrackShipmentimages/Containerimage.png";
+
+    async function fetchShipmentData() {
+      try {
+        // Replace with your API URL
+        const response = await fetch(`https://api.sinay.ai/container-tracking/api/v2/shipment?shipmentNumber=${Shipment_no}`, options)
+        const data = await response.json();
+
+        // Display data in a table
+        displayTable(data);
+
+      } catch (error) {
+        console.error('Error fetching shipment data:', error);
+      }
+    }
+
+    const options = {
+      method: 'GET',
+      headers: {accept: 'application/json', API_KEY: 'f0124914-22bc-4660-9f55-de622d7b4ac8'}
+    };
+
+
+
+    function openShipmentMiniWindow(data) {
+      // Open a new mini window
+      let miniWin = window.open("", "MiniWindow", "width=800,height=600,top=75,left=200");
+
+      // Write the basic HTML structure into the new window
+      miniWin.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Shipment Details</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f4f4f4; }
+      </style>
+    </head>
+    <body>
+      <h1>Shipment Details</h1>
+      <div id="shipment-table">Loading shipment details...</div>
+    </body>
+    </html>
+  `);
+      miniWin.document.close(); // Ensure the document is finished loading
+
+      // Wait for the mini window to fully load before inserting the data
+      miniWin.onload = function() {
+        let container = miniWin.document.getElementById("shipment-table");
+        let html = "";
+
+        // Metadata Table
+        if (data.metadata) {
+          html += `
+        <h2>Shipment Metadata</h2>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Shipment Number</th>
+            <th>Sealine Name</th>
+            <th>Status</th>
+            <th>Updated At</th>
+          </tr>
+          <tr>
+            <td>${data.metadata.shipmentType}</td>
+            <td>${data.metadata.shipmentNumber}</td>
+            <td>${data.metadata.sealineName}</td>
+            <td>${data.metadata.shippingStatus}</td>
+            <td>${data.metadata.updatedAt}</td>
+          </tr>
+        </table>
+      `;
+        }
+
+        // Locations Table
+        if (data.locations && data.locations.length > 0) {
+          html += `
+        <h2>Locations</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Timezone</th>
+          </tr>
+      `;
+          data.locations.forEach(function(loc) {
+            html += `
+          <tr>
+            <td>${loc.name}</td>
+            <td>${loc.state}</td>
+            <td>${loc.country}</td>
+            <td>${loc.timezone}</td>
+          </tr>
+        `;
+          });
+          html += `</table>`;
+        }
+
+        // Route Table
+        if (data.route) {
+          html += `
+        <h2>Route Information</h2>
+        <table>
+          <tr>
+            <th>Point</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+      `;
+          if (data.route.prepol) {
+            html += `
+          <tr>
+            <td>Pre-POL</td>
+            <td>${data.route.prepol.location && data.route.prepol.location.name ? data.route.prepol.location.name : 'N/A'}</td>
+            <td>${data.route.prepol.date}</td>
+            <td>${data.route.prepol.actual ? 'Actual' : 'Predicted'}</td>
+          </tr>
+        `;
+          }
+          if (data.route.pol) {
+            html += `
+          <tr>
+            <td>POL</td>
+            <td>${data.route.pol.location && data.route.pol.location.name ? data.route.pol.location.name : 'N/A'}</td>
+            <td>${data.route.pol.date}</td>
+            <td>${data.route.pol.actual ? 'Actual' : 'Predicted'}</td>
+          </tr>
+        `;
+          }
+          if (data.route.pod) {
+            html += `
+          <tr>
+            <td>POD</td>
+            <td>${data.route.pod.location && data.route.pod.location.name ? data.route.pod.location.name : 'N/A'}</td>
+            <td>${data.route.pod.date}</td>
+            <td>${data.route.pod.actual ? 'Actual' : 'Predicted'}</td>
+          </tr>
+        `;
+          }
+          if (data.route.postpod) {
+            html += `
+          <tr>
+            <td>Post-POD</td>
+            <td>${data.route.postpod.location && data.route.postpod.location.name ? data.route.postpod.location.name : 'N/A'}</td>
+            <td>${data.route.postpod.date}</td>
+            <td>${data.route.postpod.actual ? 'Actual' : 'Predicted'}</td>
+          </tr>
+        `;
+          }
+          html += `</table>`;
+        }
+
+        // Vessel Table
+        if (data.vessels && data.vessels.length > 0) {
+          html += `
+        <h2>Vessel Information</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>IMO</th>
+            <th>Call Sign</th>
+            <th>Flag</th>
+          </tr>
+      `;
+          data.vessels.forEach(function(vessel) {
+            html += `
+          <tr>
+            <td>${vessel.name}</td>
+            <td>${vessel.imo}</td>
+            <td>${vessel.callSign}</td>
+            <td>${vessel.flag}</td>
+          </tr>
+        `;
+          });
+          html += `</table>`;
+        }
+
+        // Containers Table
+        if (data.containers && data.containers.length > 0) {
+          html += `
+        <h2>Containers</h2>
+        <table>
+          <tr>
+            <th>Container Number</th>
+            <th>ISO Code</th>
+            <th>Status</th>
+          </tr>
+      `;
+          data.containers.forEach(function(containerData) {
+            html += `
+          <tr>
+            <td>${containerData.number}</td>
+            <td>${containerData.isoCode}</td>
+            <td>${containerData.status}</td>
+          </tr>
+        `;
+          });
+          html += `</table>`;
+        }
+
+        container.innerHTML = html;
+      };
+
+      miniWin.focus();
+    }
+
+
+
+  }
+
+// Function to display data in an HTML table inside the mini window
+    function displayTable(data) {
+      const container = document.getElementById('shipment-table');
+
+      // Metadata Table
+      if (data.metadata) {
+        const metadataHTML = `
+          <h2>Shipment Metadata</h2>
+          <table>
+            <tr><th>Type</th><th>Shipment Number</th><th>Sealine Name</th><th>Status</th><th>Updated At</th></tr>
+            <tr>
+              <td>${data.metadata.shipmentType}</td>
+              <td>${data.metadata.shipmentNumber}</td>
+              <td>${data.metadata.sealineName}</td>
+              <td>${data.metadata.shippingStatus}</td>
+              <td>${data.metadata.updatedAt}</td>
+            </tr>
+          </table>
+        `;
+        container.innerHTML += metadataHTML;
+      }
+
+      // Locations Table
+      if (data.locations && data.locations.length > 0) {
+        const locationsHTML = `
+          <h2>Locations</h2>
+          <table>
+            <tr><th>Name</th><th>State</th><th>Country</th><th>Timezone</th></tr>
+            ${data.locations.map(loc => `
+                <tr>
+                  <td>${loc.name}</td>
+                  <td>${loc.state}</td>
+                  <td>${loc.country}</td>
+                  <td>${loc.timezone}</td>
+                </tr>
+            `).join('')}
+          </table>
+        `;
+        container.innerHTML += locationsHTML;
+      }
+
+      // Route Table
+      if (data.route) {
+        const { prepol, pol, pod, postpod } = data.route;
+        const routeHTML = `
+          <h2>Route Information</h2>
+          <table>
+            <tr><th>Point</th><th>Location</th><th>Date</th><th>Status</th></tr>
+            ${prepol ? `<tr><td>Pre-POL</td><td>${prepol.location?.name || 'N/A'}</td><td>${prepol.date}</td><td>${prepol.actual ? 'Actual' : 'Predicted'}</td></tr>` : ''}
+            ${pol ? `<tr><td>POL</td><td>${pol.location?.name || 'N/A'}</td><td>${pol.date}</td><td>${pol.actual ? 'Actual' : 'Predicted'}</td></tr>` : ''}
+            ${pod ? `<tr><td>POD</td><td>${pod.location?.name || 'N/A'}</td><td>${pod.date}</td><td>${pod.actual ? 'Actual' : 'Predicted'}</td></tr>` : ''}
+            ${postpod ? `<tr><td>Post-POD</td><td>${postpod.location?.name || 'N/A'}</td><td>${postpod.date}</td><td>${postpod.actual ? 'Actual' : 'Predicted'}</td></tr>` : ''}
+          </table>
+        `;
+        container.innerHTML += routeHTML;
+      }
+
+      // Vessel Table
+      if (data.vessels && data.vessels.length > 0) {
+        const vesselsHTML = `
+          <h2>Vessel Information</h2>
+          <table>
+            <tr><th>Name</th><th>IMO</th><th>Call Sign</th><th>Flag</th></tr>
+            ${data.vessels.map(vessel => `
+                <tr>
+                    <td>${vessel.name}</td>
+                    <td>${vessel.imo}</td>
+                    <td>${vessel.callSign}</td>
+                    <td>${vessel.flag}</td>
+                </tr>
+            `).join('')}
+          </table>
+        `;
+        container.innerHTML += vesselsHTML;
+      }
+
+      // Containers Table
+      if (data.containers && data.containers.length > 0) {
+        const containersHTML = `
+          <h2>Containers</h2>
+          <table>
+            <tr><th>Container Number</th><th>ISO Code</th><th>Status</th></tr>
+            ${data.containers.map(container => `
+                <tr>
+                    <td>${container.number}</td>
+                    <td>${container.isoCode}</td>
+                    <td>${container.status}</td>
+                </tr>
+            `).join('')}
+          </table>
+        `;
+        container.innerHTML += containersHTML;
+      }
+    }
+
+
+  function VesselTrackShipment() {
+    console.log("Tracking Shipment");
+    Shipment_no = document.getElementById('vesselno').value;
+    document.getElementById("number").textContent = "Vessel No:"+Shipment_no;
+    console.log(Shipment_no);
+
+    datatype="Vessel";
+    console.log(Shipment_no);
+
+
+    document.getElementById("placeholder").src = "../../Images/TrackShipmentimages/Vesselimage.png";
+
+    async function fetchShipmentData() {
+      try {
+        // Replace with your API URL
+        const response = await fetch(`https://api.sinay.ai/ports-vessels/api/v1/vessels?vesselNameOrCode=BACH`, options)
+        const data = await response.json();
+
+        // Display data in a table
+        displayTable(data);
+
+      } catch (error) {
+        console.error('Error fetching shipment data:', error);
+      }
+    }
+
+
+    const options = {
+      method: 'GET',
+      headers: {accept: 'application/json', API_KEY: 'f0124914-22bc-4660-9f55-de622d7b4ac8'}
+    }
+    function displayVesselTable(data) {
+      const container = document.getElementById('shipment-table');
+      container.innerHTML = ""; // Clear previous data
+
+      if (data.vesselsList && data.vesselsList.length > 0) {
+        const vesselsHTML = `
+                <h2>Vessel Information</h2>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                        <th>IMO</th>
+                        <th>MMSI</th>
+                    </tr>
+                    ${data.vesselsList.map(vessel => `
+                        <tr>
+                            <td>${vessel.name || 'N/A'}</td>
+                            <td>${vessel.imo && vessel.imo !== "0" ? vessel.imo : 'N/A'}</td>
+                            <td>${vessel.mmsi || 'N/A'}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+        container.innerHTML = vesselsHTML;
+      } else {
+        container.innerHTML = "<p>No vessel data found.</p>";
+      }
+    }
+
+  fetchShipmentData();
+
+  }
+
+
+
+  // const data = {
+  //   Booking: {
+  //     "B123": "Booking B123: Shipment of 100 boxes to Dubai.",
+  //     "B456": "Booking B456: Electronics shipment to Singapore.",
+  //   },
+  //   Container: {
+  //     "C789": "Container C789: 40ft container with 500kg of goods.",
+  //     "C101": "Container C101: Refrigerated container for food items.",
+  //   },
+  //   Vessel: {
+  //     "V112": "Vessel V112: Currently docked at Port of Shanghai.",
+  //     "V345": "Vessel V345: En route to Los Angeles.",
+  //   },
+  // };
+
+
+</script>
+</html>

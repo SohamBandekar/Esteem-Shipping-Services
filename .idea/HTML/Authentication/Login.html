@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Esteem Shipping Services</title>
+  <link rel="stylesheet" href="LoginStyle.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<header>
+  <div>
+    <img src="../../Images/Esteem%20Shipping%20Logos/Esteem%20Shipping%20Services%20Title%20Logo.png" width="auto" height="100">
+  </div>
+  <nav>
+    <ul class="navigation">
+      <li><a href="../Navigation/Index.html">Home</a></li>
+      <li><a href="../Navigation/ContacUS.html">Contact US</a></li>
+      <li><a href="../Navigation/AboutUS.html">About US</a></li>
+      <li><a href="../Navigation/Track_Shipments.html">Track Shipment</a></li>
+      <li class="servicehover">Services
+        <ul class="dropdown">
+          <li><a href="../Services/CustomsClearance.html">Customs Clearance</a></li>
+          <li><a href="../Services/Transportation.html">Transportation</a></li>
+          <li><a href="../Services/freightforwarding.html">Freight Forwarding</a></li>
+          <li><a href="../Services/IEC_registeration.html">IEC Registeration</a></li>
+        </ul>
+      </li>
+      <li><a href="../Authentication/Login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="Container">
+  <!-- Login & Register Forms -->
+  <section class="form_container" id="container">
+    <main class="signin" id="signin">
+      <div class="btn">
+        <button type="button" class="toggle-btn" onclick="Login()"> Log IN</button>
+        <button type="button" class="toggle-btn" onclick="Register()"> Register</button>
+      </div>
+      <form id="loginForm">
+        <h3>Log In</h3>
+        <label>Email: </label>
+        <input type="email" id="login_email" placeholder="Your Email" required>
+
+        <label>Password:</label>
+        <input type="password" id="login_password" placeholder="Your Password" required>
+
+        <button type="submit">Login</button>
+      </form>
+    </main>
+
+    <main class="signup" id="signup">
+      <div class="btn">
+        <button type="button" class="toggle-btn" onclick="Login()"> Log IN</button>
+        <button type="button" class="toggle-btn" onclick="Register()"> Register</button>
+      </div>
+      <form id="registerForm">
+        <h3>Register</h3>
+        <label>Email: </label>
+        <input type="email" id="register_email" placeholder="Enter Email" required>
+
+        <label>Password:</label>
+        <input type="password" id="register_password" placeholder="New Password" required>
+
+        <label>Contact No:</label>
+        <input type="text" id="register_phone" placeholder="Phone No:" required>
+
+        <button type="submit">Sign UP</button>
+      </form>
+    </main>
+  </section>
+
+  <!-- Image -->
+  <section class="image_container">
+    <img src="Infograph.png" width="auto" height="auto">
+  </section>
+</section>
+
+<script>
+  function Login() {
+    document.body.style.backgroundImage = "url('Background.png')";
+    document.body.style.transition = "1s";
+    const loginForm = document.getElementById("signin");
+    loginForm.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }
+
+  function Register() {
+    document.body.style.backgroundImage = "url('BackgroundDark.png')";
+    document.body.style.transition = "1s";
+    const registerForm = document.getElementById("signup");
+    registerForm.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+  import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
+
+  // Firebase Configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDgER2i9Z7WlQK7OV5Q9X1427r_VV9uxeI",
+    authDomain: "esteemshipping.firebaseapp.com",
+    projectId: "esteemshipping",
+    storageBucket: "esteemshipping.firebasestorage.app",
+    messagingSenderId: "834027554766",
+    appId: "1:834027554766:web:fed05d496c82738b7f0d9f",
+    measurementId: "G-KCBVXRZGM6"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+
+  // Login Form Submission
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    
+    const email = document.getElementById("login_email").value;
+    const password = document.getElementById("login_password").value;
+    const userRef = ref(db, 'users/' + email.replace(/\./g, '_'));
+
+    get(userRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            if (userData.password === password) {
+                localStorage.setItem("loggedInUser", email);
+                alert("Login Successful!");
+                window.location.href = "../Navigation/Index.html"; // Redirect to homepage
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        } else {
+            alert("User does not exist. Please register first.");
+        }
+    }).catch(error => {
+        alert("Error: " + error.message);
+    });
+  });
+
+  // Registration Form Submission
+  document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("register_email").value;
+    const password = document.getElementById("register_password").value;
+    const phone = document.getElementById("register_phone").value;
+
+    if (email && password && phone) {
+      set(ref(db, 'users/' + email.replace(/\./g, '_')), {
+        email: email,
+        password: password,
+        phone: phone
+      }).then(() => {
+        alert("Registration Successful!");
+      }).catch(error => {
+        alert("Error: " + error.message);
+      });
+    } else {
+      alert("All fields are required!");
+    }
+  });
+</script>
+
+</body>
+</html>
+
+

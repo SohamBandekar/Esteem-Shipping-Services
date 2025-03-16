@@ -1,0 +1,373 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    margin: 0px;
+    background-color: #ffffff;
+
+}
+header{
+    background-color: #14213d;
+    color: #ffffff;
+    text-align: center;
+    height:auto;
+    overflow: visible;
+}
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+header li{
+    font-size: 20px;
+}
+
+header .navigation li:hover {
+    color: #00b4d8;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.dropdown li{
+    margin: 5px;
+}
+.dropdown a:hover{
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.dropdown{
+    margin: 10px;
+    position: absolute;
+    margin: 0.5em -0.5em;
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    background-color: #00b4d8;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    color: #14213d;
+    z-index: 9999;
+}
+.servicehover:hover .dropdown{
+    display:block;
+    overflow: visible;
+}
+.slider-wrapper{
+    position: relative;
+    max-width: auto;
+    margin: 0 auto;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+
+    .form-box{
+        filter: invert(90%) hue-rotate(180deg);
+
+    }
+
+
+    #contact_section{
+        filter: invert(100%) hue-rotate(180deg);
+
+    }
+
+    .credentials{
+        filter: invert(80%) hue-rotate(180deg);
+
+    }
+}
+
+
+
+.container{
+    justify-content: center;
+    background-image: url(../../HTML/Authentication/BackgroundDark.png);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 800px;
+    align-items: center;
+    margin-top: -32px;
+    margin-bottom: -38px;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    height: 500px;
+    width: 600px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-size: 28px;
+
+    background: url("../../HTML/Authentication/Background.png") no-repeat;
+    background-position: 0% 0;
+}
+.forms form{
+    width: 600px;
+    height: 600px;
+}
+.forms h3{
+    font-size: 42px;
+    text-align: center;
+}
+.form-box input{
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    opacity: 55%;
+    border: none;
+    outline: none;
+    font-size: 22px;
+}
+.form-box select{
+    font-size: 22px;
+}
+.form-box textarea{
+    border: none;
+    outline: none;
+    font-size: 22px;
+    background-color: ghostwhite;
+    width: 500px;
+
+}
+#submitbutton{
+    align-content: center;
+    padding: 16px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    background-color: lightgray;
+    width: 500px;
+}
+#submitbutton:hover{
+    background-color: darkgray;
+}
+#submitbutton:active{
+    background-color: lightblue;
+}
+
+
+#services{
+    padding: 10px;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px;
+    border: 2px solid #030303;
+}
+
+.forms{
+    display: flex;
+    flex-direction: row;
+    max-width: 600px;
+    overflow: hidden;
+
+}
+small{
+    font-size: 16px;
+}
+.image-box{
+    overflow: hidden;
+    gap: 40px;
+    height: 500px;
+    width: 650px;
+    margin: 20px;
+}
+#image1{
+    background-image: url("../../Images/Form_images/personal_form_image.png");
+    background-size: cover;
+
+    height: 500px;
+    width: 600px;
+}
+
+#image2{
+    background-image: url("../../Images/Form_images/professional_form_image.png");
+    background-size: cover;
+    height: 500px;
+    width: 600px;
+}
+#image3{
+    background-image: url("../../Images/Form_images/Shipping_form_image.png");
+    background-size: cover;
+    height: 500px;
+    width: 600px;
+}
+#image4{
+    background-image: url("../../Images/Form_images/car_form_image.png");
+    background-size: cover;
+    height: 500px;
+    width: 600px;
+}
+#image5{
+    background-image: url("../../Images/Form_images/final_form_image.png");
+    background-size: cover;
+    height: 500px;
+    width: 600px;
+}
+
+#one{
+    background: lightblue;
+}
+#contact_section{
+    background: url("../../HTML/Authentication/Background.png");
+    margin-bottom: -50px;
+}
+#contact_section h2{
+    text-align: center;
+    color: #14213d;
+    font-size: 62px;
+}
+
+#contact_us{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+    height: 600px;
+    width: auto;
+}
+.credentials{
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px #030303;
+    width: 300px;
+    height: 200px;
+
+    text-align: center;
+    font-style: oblique;
+    font-size: 18px;
+}
+#Address{
+    text-align: center;
+    color: black;
+    font-style: oblique;
+    font-size: 18px;
+}
+#Address:hover img{
+    background-image: url("../../Images/credentials/LocationDot.svg");
+
+
+}
+#Address:hover{
+    background-color: lightcyan;
+    transition: 2s;
+}
+#address_image{
+    background-image: url("../../Images/credentials/Locationicon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition: 0.5s;
+
+
+    height: 80px;
+    width: 60px;
+}
+#email_image{
+    background-image: url("../../Images/credentials/Gmail_black.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.5s;
+    border: 0;
+    outline: none;
+    height: 80px;
+    width: 80px;
+}
+#email:hover img{
+    background-image: url("../../Images/credentials/Gmailicon.png");
+
+}
+#email:hover{
+    background-color: lightcoral;
+
+}
+#call_image{
+    padding: 5px;
+    background-image: url("../../Images/credentials/calldark.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition: 0.5s;
+    height: 80px;
+    width: 80px;
+}
+#phone:hover img{
+    background-image: url("../../Images/credentials/Callicon.png");
+
+}
+#phone:hover{
+    background-color: forestgreen;
+
+}
+
+.contactmap{
+    text-align: center;
+    justify-content: center;
+
+}
+.contactmap h2{
+    text-align: center;
+    color: #14213d;
+    font-size: 62px;
+}
+.contactmap iframe{
+    border-radius: 30px;
+    box-shadow: 1px 1px 2px #030303;
+}
+
+.form-button-div {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+
+}
+
+.form-button-div button{
+    padding: 16px;
+    height: 50px;
+    margin-left: 20px;
+    border-radius: 100px;
+    border: none;
+    background-color: lightgray;
+    width: 75px;
+}
+.form-button-div button:hover{
+    background-color: darkgray;
+}
+
+
+
+footer{
+    background-color: #14213d;
+    margin: 0px;
+    padding: 20px;
+    color: #ffffff;
+    font-size:24px;
+}
+
+footer span{
+    font-size: 14px;
+}

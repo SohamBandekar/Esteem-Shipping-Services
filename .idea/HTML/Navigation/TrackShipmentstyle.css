@@ -1,0 +1,397 @@
+html{
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
+    aspect-ratio: 16 / 9;
+    backdrop-filter: blur(10px);
+
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+
+    .form_container{
+        filter: invert(90%) hue-rotate(180deg);
+    }
+
+    .btn{
+        filter: invert(90%) hue-rotate(180deg);
+    }
+
+
+    .btn button{
+        filter: invert(100%) hue-rotate(180deg);
+    }
+
+
+    .Texbox main{
+        background-image: url(../../HTML/Authentication/Background.png);
+    }
+
+    .Textbox h1{
+        filter: invert(90%) hue-rotate(180deg);
+    }
+    .Textbox button{
+        filter: invert(100%) hue-rotate(180deg);
+    }
+
+    .Container{
+        background-color: lightgray;
+    }
+
+    .status{
+        background-color: rgb(25,25,25);
+        color: lightgray;
+    }
+    .OrderStatusimg{
+        filter: invert(90%) hue-rotate(180deg);
+    }
+
+    .Shipment_Details{
+        filter: invert(90%) hue-rotate(180deg);
+    }
+
+
+
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    margin: 0px;
+    background-color: #ffffff;
+
+}
+header{
+    background-color: #14213d;
+    color: #ffffff;
+    text-align: center;
+    height:auto;
+    overflow: visible;
+}
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+header li{
+    font-size: 20px;
+}
+
+header .navigation li:hover {
+    color: #00b4d8;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.dropdown li{
+    margin: 5px;
+}
+.dropdown a:hover{
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.dropdown{
+    margin: 10px;
+    position: absolute;
+    margin: 0.5em -0.5em;
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    background-color: #00b4d8;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    color: #14213d;
+    z-index: 9999;
+}
+.servicehover:hover .dropdown{
+    display:block;
+    overflow: visible;
+}
+
+
+
+.navigatebutton{
+    visibility: hidden;
+    max-width: max-content;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.navigatebutton:hover{
+    background-color: #00b4d8;
+}
+
+
+.Container{
+    background: linear-gradient(to Top right,#62cff4,#2c67f2);
+    width: fill;
+    height: 750px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -32px;
+}
+.Container div{
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+}
+
+
+.Textbox{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+    flex-grow: 1;
+}
+.Textbox main{
+    align-content: center;
+    background-image: url(../../HTML/Authentication/SpareDarkBackground.png);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    margin: -50px auto;
+    border-radius: 10px;
+    height: 450px;
+    background-size: contain;
+    background-position: center;
+    min-width: 700px;
+}
+
+
+
+.Textbox main img{
+    max-width: 500px ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+.form_container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    min-width: 300px;
+}
+.Forms{
+    display: flex;
+    overflow-x:hidden;
+    gap: 25px;
+    margin: -20px;
+    padding: 30px;
+    max-width: 400px;
+    height: 600px;
+    border-radius: 30px;
+    align-items: top;
+    background-image: url("../../HTML/Authentication/Background.png");
+    background-size: cover;
+    background-position: scroll;
+}
+form input, form textarea, form button {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+/* From tabs */
+.Forms{
+    align-items: center;
+    padding: 20px;
+}
+.Forms form{
+    align-items: center;
+    min-width: 400px;
+    border-radius: 10px;
+    padding: 5px;
+}
+.Form form h3{
+    margin: -75px;
+    text-align: center;
+}
+.BookingTab h3, .ContainerTab h3, .VesselTab h3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 45px;
+}
+form input{
+    width: 90%;
+}
+
+.btn {
+    text-align: center;
+    border-radius: 70px;
+    width: 500px;
+    background-image: url(../../HTML/Authentication/BackgroundDark.png);
+    z-index: 10;
+}
+form button:hover{
+    background-color: darkgray;
+}
+
+.btn button{
+    width: 130px;
+    height: 55px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-left: 30px;
+    background-color: lightgray;
+    font-size: 15px;
+}
+.btn button:hover{
+    transition: 0.5s;
+    background-color: lightskyblue;
+}
+.btn button:active{
+    background-color: blue;
+    color: white;
+}
+.status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.status h1 {
+    margin-bottom: 20px; /* Adds some spacing below the heading */
+}
+
+
+.OrderStatusimg {
+    background-image: url(../../Images/TrackShipmentimages/OrderStatus.png);
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-position: center; /* Centers the image horizontally and vertically */
+    background-size: contain; /* Ensures the image fits within the container */
+}
+
+/*table*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
+}
+
+
+.Shipment_Details {
+    margin-top: -40px;
+    background-color: #ffffff;
+}
+.Shipment_Details h1{
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+}
+.Shipment_metadata_image{
+    background-image: url(../../Images/TrackShipmentimages/ShipmentDetails_image.png);
+    width: auto;
+    height: 450px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#shipment-table{
+    padding: 70px;
+    background-color: #ffffff;
+    color: #090909;
+}
+#shipment-table th{
+
+    background-color: #14213d;
+    color: #ffffff;
+}
+
+
+.Loading{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+@keyframes loadinganimation {
+
+    0% , 100%{
+        height: 5px; width: 15px;
+        background-color: white;
+    }
+    20%{
+        height: 45px; width: 15px;
+        background-color: lightblue;
+    }
+    40%{
+        height: 65px; width: 15px;
+        background-color: blue;
+    }
+    50%{
+        height: 90px; width: 15px;
+        background-color: darkblue;
+    }
+    60%{
+        height: 65px; width: 15px;
+        background-color: blue;
+    }
+    80%{
+        height: 45px; width: 15px;
+        background-color: cornflowerblue;
+    }
+
+}
+.dots{
+    height: 50px;
+    border-radius: 200px;
+    background-color: lightblue;
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    animation: loadinganimation 1.5s  linear infinite;
+    vertical-align: baseline;
+
+}
+
+.dots:nth-child(1){
+    animation-delay: 1ms;
+}
+.dots:nth-child(2){
+    animation-delay: 105ms;
+}
+.dots:nth-child(3){
+    animation-delay: 205ms;
+}
+
+.dots:nth-child(4){
+    animation-delay: 305ms;
+}
+
+.dots:nth-child(5){
+    animation-delay: 405ms;
+}
+
+
